@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shortify — Home</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">Shortify</div>
+            <nav class="nav-links">
+                <a href="/signup">Sign Up</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div>
+                <span class="status-chip">Real-world URL shortening</span>
+                <h1>Turn long links into sleek, shareable URLs instantly.</h1>
+                <p>Shortify helps you manage all your short links from a clean dashboard, track click counts, and reuse your shortened URLs.</p>
+                <a class="button-primary" href="#create">Create a Short Link</a>
+            </div>
+            <div class="card" id="create">
+                <h2>Convert a URL</h2>
+                <form class="form-grid" method="POST" action="/url">
+                    <div>
+                        <label for="originalUrl">Your original link</label>
+                        <input id="originalUrl" type="text" name="originalUrl" placeholder="https://example.com/page" required />
+                    </div>
+                    <button class="button-primary" type="submit">Shorten Now</button>
+                </form>
+            </div>
+        </section>
+
+        <main>
+            <% if (locals.id) { %>
+                <div class="success-banner">
+                    <strong>Success!</strong>
+                    Your shortened link is ready:
+                    <a href="http://localhost:4000/<%= locals.id %>" target="_blank" rel="noopener">http://localhost:4000/<%= locals.id %></a>
+                </div>
+            <% } %>
+
+            <% if (locals.urls && locals.urls.length) { %>
+                <div class="card">
+                    <h2>Your links</h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Short ID</th>
+                                    <th>Original URL</th>
+                                    <th>Clicks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% urls.forEach((url, index) => { %>
+                                    <tr>
+                                        <td><%= index + 1 %></td>
+                                        <td><a href="http://localhost:4000/<%= url.shortId %>" target="_blank" rel="noopener"><%= url.shortId %></a></td>
+                                        <td><a href="<%= url.originalUrl %>" target="_blank" rel="noopener"><%= url.originalUrl %></a></td>
+                                        <td><%= url.visitHistory.length %></td>
+                                    </tr>
+                                <% }); %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="card">
+                    <h2>Start shortening links</h2>
+                    <p>Once you create a short link, your history will appear here so you can track clicks and share quickly.</p>
+                </div>
+            <% } %>
+        </main>
+
+        <footer class="footer">Fast, modern URL shortening with an elegant dashboard feel.</footer>
+    </div>
+</body>
+</html>

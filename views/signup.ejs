@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — Shortify</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="brand">Shortify</div>
+            <nav class="nav-links">
+                <a href="/login">Login</a>
+                <a href="/">Home</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div>
+                <span class="status-chip">Create your account</span>
+                <h1>Join Shortify and start shortening links in seconds.</h1>
+                <p>Sign up to manage your shortened URLs, track clicks, and keep your dashboard organized with a modern interface.</p>
+            </div>
+            <div class="card">
+                <h2>Create an account</h2>
+                <form class="form-grid" method="POST" action="/user">
+                    <div>
+                        <label for="userName">Username</label>
+                        <input id="userName" type="text" name="userName" placeholder="Your name" required />
+                    </div>
+                    <div>
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" placeholder="you@example.com" required />
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" placeholder="Choose a strong password" required />
+                    </div>
+                    <button class="button-primary" type="submit">Sign Up</button>
+                </form>
+            </div>
+        </section>
+
+        <footer class="footer">Already have an account? <a href="/login">Log in</a> to continue.</footer>
+    </div>
+</body>
+</html>
